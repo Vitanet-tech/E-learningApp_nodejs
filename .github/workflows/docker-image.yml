@@ -23,6 +23,6 @@ jobs:
           password: ${{ secrets.ACR_PASSWORD }}
 
       - run: |
-          docker build . -t imagevita1.azurecr.io/appdb:${{ github.sha }}
-          docker push imagevita1.azurecr.io/appdb:${{ github.sha }}
+          docker build . -t imagevita1.azurecr.io/imagepushfromgithub:${{ github.sha }}
+          docker push imagevita1.azurecr.io/imagepushfromgithub:${{ github.sha }}
 
