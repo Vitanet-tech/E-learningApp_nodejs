@@ -52,6 +52,17 @@ jobs:
       with:
         name: node-app
         path: .
+      
+     #Build and push image to Azure Container Registry (ACR)
+    - name: Build and push image to Azure Container Registry
+      uses: azure/docker-login@v1
+      with:
+          login-server: imagevita1.azurecr.io
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }} 
+    - run: |
+          docker build . -t yourACRname.azurecr.io/appdb:${{ github.sha }}
+          docker push yourACRname.azurecr.io/appdb:${{ github.sha }}
 
   deploy:
     permissions:
