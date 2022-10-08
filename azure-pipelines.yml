@@ -51,6 +51,12 @@ stages:
 
     - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
       artifact: drop
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'Imagevita1'
+        repository: 'test234'
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
 
 - stage: Deploy
   displayName: Deploy stage
@@ -69,9 +75,9 @@ stages:
           - task: AzureWebApp@1
             displayName: 'Azure Web App Deploy: NodeB'
             inputs:
-              azureSubscription: $(azureSubscription)
-              appType: webAppLinux
-              appName: $(webAppName)
+              azureSubscription: '$(azureSubscription)'
+              appType: 'webAppLinux'
+              appName: '$(webAppName)'
+              package: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
               runtimeStack: 'NODE|10.10'
-              package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
               startUpCommand: 'npm run start'
