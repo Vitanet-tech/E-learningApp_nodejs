@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-     #Build and push image to Azure Container Registry (ACR)
+     #Build and push image to Azure Container Registry(ACR)
       - uses: azure/docker-login@v1
         with:
           login-server: testacr28.azurecr.io
