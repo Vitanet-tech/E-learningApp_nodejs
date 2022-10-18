@@ -18,7 +18,7 @@ jobs:
      #Build and push image to Azure Container Registry (ACR)
       - uses: azure/docker-login@v1
         with:
-          login-server: imagevita1.azurecr.io
+          login-server: testacr28.azurecr.io
           username: ${{ secrets.ACR_USERNAME }}
           password: ${{ secrets.ACR_PASSWORD }}
 
