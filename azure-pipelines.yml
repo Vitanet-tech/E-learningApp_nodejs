@@ -81,3 +81,14 @@ stages:
               runtimeStack: 'NODE|10.10'
               package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
               startUpCommand: 'npm run start'
+
+          - task: SonarCloudAnalyze@1
+            inputs:
+              jdkversion: 'JAVA_HOME_17_X64'
+          - task: SonarCloudPrepare@1
+            inputs:
+              SonarCloud: 'SonarCloud'
+              organization: 'vitanetsonarcloudtest'
+              scannerMode: 'MSBuild'
+              projectKey: 'vitanetsonarcloudtest'
+              projectName: 'vitanetsonarcloudtest'
