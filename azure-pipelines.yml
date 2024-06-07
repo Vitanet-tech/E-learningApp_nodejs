@@ -92,3 +92,7 @@ stages:
               scannerMode: 'MSBuild'
               projectKey: 'vitanetsonarcloudtest'
               projectName: 'vitanetsonarcloudtest'
+          - task: WhiteSource@21
+            inputs:
+              cwd: '$(System.DefaultWorkingDirectory)'
+              projectName: 'test'
